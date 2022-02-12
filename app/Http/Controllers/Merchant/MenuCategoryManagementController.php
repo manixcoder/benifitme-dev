@@ -107,10 +107,12 @@ class MenuCategoryManagementController extends Controller
             return back()->withErrors($validator)->withInput();
         }
         try {
+            $menuCategoryData = MenuCategory::find($id);
+            $updateData = array(
+                "category_name" => $request->has('category_name') ? $request->category_name : $menuCategoryData->category_name,
+            );
+            $menuCategoryData->update($updateData);
 
-            MenuCategory::where('id', $id)->update([
-                'category_name' => $request->category_name
-            ]);
             return redirect('/merchant/menu-category-management')
                 ->with([
                     'status' => 'success',
