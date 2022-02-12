@@ -1587,3 +1587,12 @@ header .benefitme a {
 header .benefitme .col-sm-6.text-right a {
     margin-top: 14px;
 }
+
+/* New Css */
+.add-newuser-add .user-name .form-group small {
+    display: inline-block;
+    width: 100%;
+    position: static;
+    text-align: left;
+    color: #ff0000;
+}
