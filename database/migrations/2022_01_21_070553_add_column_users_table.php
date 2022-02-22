@@ -14,7 +14,7 @@ class AddColumnUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('user_role')->after('id')->nullable();
+            $table->string('user_role')->after('id')->nullable()->comment = '1 = Admin, 2 = Merchant 3 = Users ';
             $table->string('first_name')->after('user_role')->nullable();
             $table->string('last_name')->after('first_name')->nullable();
             $table->string('company_name')->after('password')->nullable();
@@ -43,7 +43,7 @@ class AddColumnUsersTable extends Migration
             $table->string('instagram_link')->after('facebook_link')->nullable();
             $table->string('twitter_link')->after('instagram_link')->nullable();
             $table->longText('comp_short_descriptin')->after('twitter_link')->nullable();
-            $table->enum('is_confirmation_chk',['1','0'])->after('comp_short_descriptin')->default(1)->comment = "1 =Yes ,0 No";
+            $table->enum('is_confirmation_chk', ['1', '0'])->after('comp_short_descriptin')->default(1)->comment = "1 =Yes ,0 No";
             $table->enum('is_active', ['1', '2', '0'])->after('is_confirmation_chk')->default(1)->comment = '1=Active, 2 = decline 0=Inactive ';
             $table->enum('is_audience', ['1', '0'])->after('is_active')->default(1)->comment = "1 =Yes ,0 No";
         });

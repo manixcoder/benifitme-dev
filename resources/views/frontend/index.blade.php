@@ -228,7 +228,8 @@
 <section class="hotels-restaurants fw">
     <div class="container">
         <div class="site-heading text-center">
-            <h3>Hotels & Restaurants</h3>
+            <h3>Hotels & Restaurants1</h3>
+            
         </div>
         <div class="restaurants-slider">
             <div class="loop owl-carousel owl-theme">

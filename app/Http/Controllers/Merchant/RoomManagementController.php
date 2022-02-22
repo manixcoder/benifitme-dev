@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Redirect;
 use Validator;
 use Auth;
+use File;
 
 class RoomManagementController extends Controller
 {
@@ -43,7 +44,7 @@ class RoomManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'room_type'             => 'required',
             'room_for'              => 'required',
@@ -74,6 +75,7 @@ class RoomManagementController extends Controller
             } else {
                 $image = '';
             }
+            //$image = '';
             $roomData =  RoomModel::create([
                 'merchent_id'               => Auth::user()->id,
                 'room_type'                 => $request->has('room_type') ? $request->room_type : '',
@@ -93,15 +95,6 @@ class RoomManagementController extends Controller
                 'health_safety'             => serialize($request->health_safety),
                 'room_image'                => $image
             ]);
-            // if ($request->hasFile('room_image')) {
-            //     $room = RoomModel::find($roomData->id);
-            //     $file = $request->file('room_image');
-            //     $filename = 'roomimage-' . time() . '.' . $file->getClientOriginalExtension();
-            //     $room->move('public/uploads/', $filename);
-            //     $room->room_image = $filename;
-            //     $room->save();
-            // }
-            // dd($roomData);
 
             return redirect('/merchant/room-management')->with(['status' => 'success', 'message' => 'New Room added Successfully!']);
         } catch (\Exception $e) {
@@ -116,9 +109,30 @@ class RoomManagementController extends Controller
      * @param  \App\Models\RoomModel  $roomModel
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomModel $roomModel)
+    public function show(RoomModel $roomModel, $id)
     {
         //
+    }
+    public function getRoomData($id)
+    {
+       // dd($id);
+        if (!empty($id)) {
+            $id = $id;
+        } else {
+            $catData = DB::table('hotel_room')->where('merchent_id', Auth::user()->id)->where('room_for',$id)->orderby('id', 'ASC')->first();
+            $id = $catData->room_for;
+        }
+        $roomsData = RoomModel::where('room_for', $id)->where('merchent_id', Auth::user()->id)->get();
+        // dd($category_dise);
+        $data = array();
+        $data['roomsData'] = $roomsData;
+
+        $currentData = view('merchent.rooms.render.room_listing')->with('roomsData', $roomsData)->render();
+
+        if ($currentData) {
+            return response()->json(['status' => 'success', 'currentData' => $currentData]);
+        }
+        return response()->json(['status' => 'danger', 'message' => 'No matches found.']);
     }
 
     /**
@@ -127,9 +141,9 @@ class RoomManagementController extends Controller
      * @param  \App\Models\RoomModel  $roomModel
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomModel $roomModel)
+    public function edit(RoomModel $roomModel, $id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -139,9 +153,9 @@ class RoomManagementController extends Controller
      * @param  \App\Models\RoomModel  $roomModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomModel $roomModel)
+    public function update(Request $request, RoomModel $roomModel, $id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -150,8 +164,8 @@ class RoomManagementController extends Controller
      * @param  \App\Models\RoomModel  $roomModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomModel $roomModel)
+    public function destroy(RoomModel $roomModel, $id)
     {
-        //
+        dd($id);
     }
 }

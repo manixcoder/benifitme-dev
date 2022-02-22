@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use App\Models\Adverting;
+use App\Models\AwardModel;
+use App\Models\Category;
+use App\Models\PaymentModel;
+use App\Models\Subscription;
 use Validator;
 use Yajra\Datatables\Datatables;
 

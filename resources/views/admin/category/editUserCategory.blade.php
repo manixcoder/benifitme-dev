@@ -14,6 +14,23 @@
         <span>&gt;Update User Category</span>
     </p>
 </div>
+@if(Session::has('status'))
+<div class="alert alert-{{ Session::get('status') }}">
+    <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            ×
+        </span>
+    </button>
+</div>
+@elseif(Session::get('status') == "danger")
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ Session::get('message') }}
+    <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </a>
+</div>
+@endif
 <div class="user-name">
     <div class="row">
         <form method="POST" action="{{ url('/admin/category-management/'.$categoryData->id.'/update-categary') }}" enctype="multipart/form-data">

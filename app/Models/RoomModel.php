@@ -11,7 +11,7 @@ class RoomModel extends Model
      *
      * @var string
      */
-    protected $table = 'hotel_roome';
+    protected $table = 'hotel_room';
 
     /**
      * The attributes that are mass assignable.

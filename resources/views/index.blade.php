@@ -224,24 +224,40 @@
     <div class="container">
         <div class="site-heading text-center">
             <h3>Hotels & Restaurants</h3>
+            @php
+            $hotleRestroData = DB::table('users')
+            ->whereIn('company_type', [2, 3])
+            ->get();
+            @endphp
         </div>
         <div class="restaurants-slider">
             <div class="loop owl-carousel owl-theme">
+                @forelse ($hotleRestroData as $resthotel)
                 <div class="item">
                     <div class="hotel-bgbox">
                         <div class="hotel-img">
                             <figure>
                                 <img src="{{ asset('public/frontendAssets/images/hotel-img1.jpg')}}" alt="img" />
                             </figure>
+                            @if($resthotel->company_type =='2')
+                            <span>Restaurant</span>
+                            @else
                             <span>Hotel</span>
+                            @endif
                         </div>
                         <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
+                            <h3>{{ $resthotel->company_name }}</h3>
+                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>{{ $resthotel->city }}</h4>
                         </div>
                     </div>
                 </div>
+                @empty
                 <div class="item">
+                    <div class="hotel-bgbox">
+                    </div>
+                </div>
+                @endforelse
+                <!-- div class="item">
                     <div class="hotel-bgbox">
                         <div class="hotel-img">
                             <figure>
@@ -352,7 +368,7 @@
                             <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
                         </div>
                     </div>
-                </div>
+                </div -->
             </div>
         </div>
     </div>
@@ -376,7 +392,6 @@
                                     <div class="form-box-sec">
                                         <div class="form-group">
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -385,7 +400,6 @@
                                         </div>
                                         <div class="form-group">
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -401,15 +415,28 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary"> <img src="{{ asset('public/frontendAssets/images/l_facebook.png')}}" alt="facebook" width="22px"> Login with facebook</button>
+                                                        <a href="" class="btn btn-primary">
+                                                            <img src="{{ asset('public/frontendAssets/images/l_facebook.png')}}" alt="facebook" width="22px">
+                                                            Login with facebook
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary text-color "> <img src="{{ asset('public/frontendAssets/images/l_google.png')}}" alt="" width="22px"> Login with Google</button>
+                                                        <a href="" type="submit" class="btn btn-primary text-color ">
+                                                            <img src="{{ asset('public/frontendAssets/images/l_google.png')}}" alt="" width="22px">
+                                                            Login with Google
+                                                        </a>
                                                     </div>
                                                 </div>
-                                                <p>Don't have an account ? <a href="javascript:void(0);" data-toggle="modal" data-target="#singupModal"><span>Sign up</span></a></p>
+                                                <p>
+                                                    Don't have an account ?
+                                                    <a href="javascript:void(0);" data-toggle="modal" id="singup_mod" data-target="#singupModal">
+                                                        <span>
+                                                            Sign up
+                                                        </span>
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -469,7 +496,13 @@
                                                         <button type="submit" class="btn btn-primary text-color "> <img src="{{ asset('public/frontendAssets/images/l_google.png')}}" alt="" width="22px"> Login with Google</button>
                                                     </div>
                                                 </div>
-                                                <p>Don't have an account ? <a href="javascript:void(0);" data-toggle="modal" data-target="#loginModal"><span>Login</span></a></p>
+                                                <p>Don't have an account ?
+                                                    <a href="javascript:void(0);" data-toggle="modal" id="login_mod" data-target="#loginModal">
+                                                        <span>
+                                                            Login
+                                                        </span>
+                                                    </a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -566,3 +599,21 @@
     </div>
 </div>
 @endsection
+
+@section('pagejs')
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("#singup_mod").click(function() {
+            $('#loginModal').modal('hide');
+        });
+
+
+
+        $("#login_mod").click(function() {
+            $('#singupModal').modal('hide');
+           
+        });
+    });
+</script>
+@stop

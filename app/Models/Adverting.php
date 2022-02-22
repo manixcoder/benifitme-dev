@@ -11,7 +11,7 @@ class Adverting extends Model
      *
      * @var string
      */
-    protected $table = 'advertings';
+    protected $table = 'adverting';
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +19,6 @@ class Adverting extends Model
      * @var array
      */
     protected $fillable = [
-        'ad_name',
-        'ad_image',
-        'link'
+        'banner_image', 'ad_title', 'ad_product', 'product_url'
     ];
 }

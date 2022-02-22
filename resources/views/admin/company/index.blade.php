@@ -41,7 +41,7 @@
         </li>
         <li role="presentation">
             <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-                Registered ompany
+                Registered Company
             </a>
         </li>
 
@@ -66,13 +66,16 @@
                                 <h3>{{ $merchant->company_name }}</h3>
                                 <p>{{ $categorydata->name }}</p>
                                 <p>{{ $merchant->address }} , {{ $merchant->city }} , {{ $merchant->zip_code }} </p>
-                                <h3>VAT/UID Numb<er h3="">
+                                <h3>VAT/UID Numb
+                                    <er h3="">
                                     </er>
                                     {{ $merchant->uid_number }}
                                 </h3>
                             </td>
                             <td>
-                                <p class="text-right">@if($merchant->last_login) {{ date('d M Y | H:i a', strtotime($merchant->last_login)) }} @endif </p>
+                                <p class="text-right">
+                                    @if($merchant->last_login) {{ date('d M Y | H:i a', strtotime($merchant->last_login)) }} @endif
+                                </p>
                                 <span class=" pull-right view-all">
                                     <!-- <a href="{{ url('admin/company-management') . '/' . $merchant->id.'/show' }}">
                                         View Details

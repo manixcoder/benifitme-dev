@@ -46,58 +46,11 @@
                     <td class="text-left"></td>
                 </tr>
                 @endforelse
-                <!-- tr>
-                    <td class="text-left "> Category 2</td>
-                    <td class="text-right">
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/edit.png')}}" alt="icon">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
 
-                    <td class="text-left "> Category 3</td>
-                    <td class="text-right">
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/edit.png')}}" alt="icon">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-
-                    <td class="text-left "> Category 4</td>
-                    <td class="text-right">
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/edit.png')}}" alt="icon">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-left "> Category 5</td>
-                    <td class="text-right">
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/edit.png')}}" alt="icon">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon">
-                        </a>
-                    </td>
-                </tr -->
             </tbody>
         </table>
     </div>
 </div>
-
-
 @endsection
 @section('pagejs')
 <script>

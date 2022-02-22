@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers\Merchant;
 
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Models\UserRoleRelation;
+use Illuminate\Http\Request;
+use App\Models\Appointment;
+use App\Models\MenuCategory;
+use App\Models\MenuModel;
+use App\Models\Product;
+use App\Models\TableModel;
+use Redirect;
 use App\User;
 use Auth;
 use Validator;
@@ -22,7 +31,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-       // dd("Hello Here");
         $merchent_data = User::with(['getRole'])
             ->whereHas('roles', function ($q) {
                 $q->where('name', 'merchent');

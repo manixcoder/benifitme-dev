@@ -23,9 +23,10 @@ Route::get('clear-cache', function () {
     Session::flash('success', 'All Clear');
     echo "DONE";
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 /*
 |---------------------------------
 | Admin Common Routes Here     |
@@ -33,6 +34,13 @@ Route::get('/', function () {
 */
 Route::get('/admin-login', function () {
     return view('admin_login');
+});
+Route::get('/merchent-sign-up', function () {
+    return view('merchentRegistration.registration');
+});
+
+Route::get('/merchent-login', function () {
+    return view('merchentRegistration.login');
 });
 Route::get('/forgot-password', function () {
     return view('forgot_password');
@@ -47,14 +55,8 @@ Route::get('/create-newpassword', function () {
     return view('create_newpassword');
 });
 Route::any('update-password', 'HomeController@updatePassword');
-/*
-|---------------------------------
-| Admin Common Routes Here     |
-|---------------------------------
-*/
-Route::get('/merchent-sign-up', function () {
-    return view('merchentRegistration.registration');
-});
+
+
 
 
 Route::any('/merchent-registration/save-merchent', 'Merchant\MerchantRegistrationController@store');
@@ -63,7 +65,13 @@ Auth::routes();
 use App\User;
 
 Route::get('/validate-user', 'HomeController@checkUserRole');
+
 Route::get('/request/get-sub-category/{id}', 'HomeController@getSubCategory');
+/*
+|---------------------------------
+| Admin Common Routes Here     |
+|---------------------------------
+*/
 /*=====================================ADMIN=====================================*/
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function () {
     Route::get('/', 'Admin\DashboardController@index');
@@ -147,7 +155,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function 
     /*
     |------------------------------------------
     | Subscription Management Routes Here     |
-    |-----------------------------------------
+    |------------------------------------------
      */
     Route::group(['prefix' => 'subscription-management'], function () {
         Route::get('/', 'Admin\SubscriptionsManagementController@index');
@@ -161,7 +169,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function 
     /*
     |------------------------------------------
     | Permissions Management Routes Here     |
-    |-----------------------------------------
+    |------------------------------------------
      */
     Route::group(['prefix' => 'permissions-management'], function () {
         Route::get('/', 'Admin\PermissionsManegmentController@index');
@@ -178,9 +186,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function 
         Route::get('delete/{id}', 'Admin\PermissionsManegmentController@destroy');
     });
     /*
-    |------------------------------------------
-    | Payment Management Routes Here     |
-    |-----------------------------------------
+    |-------------------------------------------
+    | Payment Management Routes Here           |
+    |-------------------------------------------
      */
     Route::group(['prefix' => 'payment-management'], function () {
         Route::get('/', 'Admin\PaymentManagementController@index');
@@ -203,7 +211,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'auth']], function 
 });
 
 /*=====================================ADMIN END=====================================*/
-Route::get('/', 'HomeController@index')->name('home');
+
 
 /*=====================================Merchant=====================================*/
 Route::group(['prefix' => 'merchant', 'middleware' => ['merchant', 'auth']], function () {
@@ -247,6 +255,7 @@ Route::group(['prefix' => 'merchant', 'middleware' => ['merchant', 'auth']], fun
         Route::get('{id}/edit', 'Merchant\RoomManagementController@edit');
         Route::post('{id}/update', 'Merchant\RoomManagementController@update');
         Route::get('delete/{id}', 'Merchant\RoomManagementController@destroy');
+        Route::get('getRoomData/{id}', 'Merchant\RoomManagementController@getRoomData');
     });
 
     /*
@@ -262,7 +271,7 @@ Route::group(['prefix' => 'merchant', 'middleware' => ['merchant', 'auth']], fun
         Route::post('/save-table', 'Merchant\TableManagementController@store');
         Route::get('{id}/show', 'Merchant\TableManagementController@show');
         Route::get('{id}/edit', 'Merchant\TableManagementController@edit');
-        Route::post('{id}/update', 'Merchant\TableManagementController@update');
+        Route::post('{id}/update-table', 'Merchant\TableManagementController@update');
         Route::get('delete/{id}', 'Merchant\TableManagementController@destroy');
     });
 
@@ -274,12 +283,16 @@ Route::group(['prefix' => 'merchant', 'middleware' => ['merchant', 'auth']], fun
     Route::group(['prefix' => 'menu-management'], function () {
 
         Route::get('/', 'Merchant\MenuManagementController@index');
+        Route::get('/menu-list', 'Merchant\MenuManagementController@menuList');
         Route::get('create', 'Merchant\MenuManagementController@create');
 
+        Route::get('create-card', 'Merchant\MenuManagementController@createCard');
+
         Route::post('/save-menu', 'Merchant\MenuManagementController@store');
+        Route::post('/save-menu-card', 'Merchant\MenuManagementController@saveMenuCard');
         Route::get('{id}/show', 'Merchant\MenuManagementController@show');
         Route::get('{id}/edit', 'Merchant\MenuManagementController@edit');
-        Route::post('{id}/update', 'Merchant\MenuManagementController@update');
+        Route::post('{id}/update-menu', 'Merchant\MenuManagementController@update');
         Route::get('delete/{id}', 'Merchant\MenuManagementController@destroy');
     });
 
@@ -300,6 +313,43 @@ Route::group(['prefix' => 'merchant', 'middleware' => ['merchant', 'auth']], fun
         Route::post('{id}/update-menu-category', 'Merchant\MenuCategoryManagementController@update');
         Route::get('delete/{id}', 'Merchant\MenuCategoryManagementController@destroy');
         Route::get('getcategoryData/{id}', 'Merchant\MenuCategoryManagementController@getcategoryData');
+    });
+
+
+    /*
+    |------------------------------------------
+    | Menu Category Management Routes Here     |
+    |-----------------------------------------
+     */
+    Route::group(['prefix' => 'appointments-management'], function () {
+
+        Route::get('/', 'Merchant\AppointmentManagementController@index');
+        Route::get('/availability-appointments', 'Merchant\AppointmentManagementController@availabilityAppointments');
+        Route::get('create', 'Merchant\AppointmentManagementController@create');
+
+        Route::post('/save-menu-category', 'Merchant\AppointmentManagementController@store');
+        Route::get('{id}/show', 'Merchant\AppointmentManagementController@show');
+        Route::get('{id}/edit', 'Merchant\AppointmentManagementController@edit');
+        Route::post('{id}/update-menu-category', 'Merchant\AppointmentManagementController@update');
+        Route::get('delete/{id}', 'Merchant\AppointmentManagementController@destroy');
+        Route::get('getcategoryData/{id}', 'Merchant\AppointmentManagementController@getcategoryData');
+    });
+
+    /*
+    |------------------------------------------
+    | Adverting Management Routes Here     |
+    |-----------------------------------------
+     */
+    Route::group(['prefix' => 'adverting-management'], function () {
+
+        Route::get('/', 'Merchant\AdvertingManagementController@index');
+        Route::get('create', 'Merchant\AdvertingManagementController@create');
+
+        Route::post('/save-adverting', 'Merchant\AdvertingManagementController@store');
+        Route::get('{id}/show', 'Merchant\AdvertingManagementController@show');
+        Route::get('{id}/edit', 'Merchant\AdvertingManagementController@edit');
+        Route::post('{id}/update-adverting', 'Merchant\AdvertingManagementController@update');
+        Route::get('delete/{id}', 'Merchant\AdvertingManagementController@destroy');
     });
 });
 /*=====================================Merchant End=====================================*/

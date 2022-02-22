@@ -21,6 +21,7 @@ class MenuModel extends Model
     protected $fillable = [
         'merchent_id',
         'disk_category_id',
+        'is_with_category',
         'dise_name',
         'dise_description',
         'disk_price',
