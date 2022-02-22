@@ -79,9 +79,27 @@ class PermissionsManegmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $roleId = $request->roleId;
+        $permissionId = $request->permissionId;
+        $permission = PermissionRoleRelation::where('role_id', $roleId)
+            ->where('permission_id', $permissionId)
+            ->get()
+            ->toArray();
+        if (!empty($permission)) {
+            PermissionRoleRelation::where('role_id', $roleId)
+                ->where('permission_id', $permissionId)
+                ->delete();
+        } else {
+            $permArray = array(
+                'permission_id' => $permissionId,
+                'role_id' => $roleId,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            );
+            PermissionRoleRelation::insert($permArray);
+        }
     }
 
     /**

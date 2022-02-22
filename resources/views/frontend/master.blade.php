@@ -20,6 +20,7 @@
     
     @include('frontend.includes.header')
     @yield('content')
+    @yield('pagejs')
     <footer class="site-footer fw">
         <div class="container">
             <div class="footertop-sec">

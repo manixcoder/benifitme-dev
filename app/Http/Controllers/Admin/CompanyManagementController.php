@@ -134,7 +134,7 @@ class CompanyManagementController extends Controller
                 'email'                     => $request->has('email') ? $request->email : '',
                 'mobile'                    => $request->has('mobile') ? $request->mobile : '',
                 'password'                  => Hash::make($request->input('password')),
-                'is_active'                 => '0',
+                'is_active'                 => '1',
                 'is_audience'               => '1',
                 'is_confirmation_chk'       => '1',
                 'profile_image'             => $profile_image,

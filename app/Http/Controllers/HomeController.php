@@ -29,7 +29,12 @@ class HomeController extends Controller
     public function index()
     {
         // return $this->checkUserRole();
-        return view('index');
+
+        if (Auth::guest()) {
+            return view('index');
+        } else {
+            return redirect('/validate-user');
+        }
     }
 
     public function sendOTPOnEmail(Request $request)
@@ -46,7 +51,10 @@ class HomeController extends Controller
         Session::put('user_id', $userdata->id);
         Session::put('user_email', $userdata->email);
         Session::put('otp', $userdata->otp);
-        return redirect('/verification')->with(array('status' => 'success', 'message' => 'OTP has been sent to ' . $userdata->email));
+        return redirect('/verification')->with(array(
+            'status' => 'success',
+            'message' => 'OTP has been sent to ' . $userdata->email
+        ));
         // return view('verification');
     }
     public function verifyOtp(Request $request)
@@ -55,16 +63,25 @@ class HomeController extends Controller
         $userdata = User::where('id', Session::get('user_id'))->first();
         //  dd($userdata->otp);
         if ($userdata->otp != $otp) {
-            return redirect('/verification')->with(array('status' => 'danger', 'message' => 'OTP not matched.'));
+            return redirect('/verification')->with(array(
+                'status' => 'danger',
+                'message' => 'OTP not matched.'
+            ));
         } else {
-            return redirect('/create-newpassword')->with(array('status' => 'success', 'message' => 'OTP matched successfully.'));
+            return redirect('/create-newpassword')->with(array(
+                'status' => 'success',
+                'message' => 'OTP matched successfully.'
+            ));
         }
     }
 
     public function updatePassword(Request $request)
     {
         if ($request->password != $request->password_confirmation) {
-            return redirect('/create-newpassword')->with(array('status' => 'danger', 'message' => 'Password and confirmation password not matched.'));
+            return redirect('/create-newpassword')->with(array(
+                'status' => 'danger',
+                'message' => 'Password and confirmation password not matched.'
+            ));
         } else {
             User::where('id', $request->user_id)->update([
                 'password' => Hash::make($request->input('password')),

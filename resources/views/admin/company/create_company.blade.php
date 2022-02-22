@@ -12,6 +12,23 @@
         <span>> Add New Company</span>
     </p>
 </div>
+@if(Session::has('status'))
+    <div class="alert alert-{{ Session::get('status') }}">
+        <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">
+                ×
+            </span>
+        </button>
+    </div>
+    @elseif(Session::get('status') == "danger")
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ Session::get('message') }}
+        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </a>
+    </div>
+    @endif
 <div class="user-name">
     <div class="row">
         <form method="POST" action="{{ url('/admin/company-management/save-company') }}" enctype="multipart/form-data">
@@ -235,7 +252,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" name="is_audience" id="is_audience" required>
+                        <input class="form-check-input" type="checkbox" name="is_audience" id="is_audience">
                         <label class="form-check-label" for="is_audience">
                             This person gave me permission to email them
                             <span>
@@ -251,7 +268,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" name="is_confirmation_chk" id="is_confirmation_chk" required>
+                        <input class="form-check-input" type="checkbox" name="is_confirmation_chk" id="is_confirmation_chk">
                         <label class="form-check-label" for="is_confirmation_chk">
                             If this person is already in my audience,update their profile
 

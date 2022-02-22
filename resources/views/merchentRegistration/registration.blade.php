@@ -221,7 +221,7 @@
                                     </div>
                                 </div>
                                 <div class="login-facebook">
-                                    <p>Already have an account ? <span>Login</span> </p>
+                                    <p>Already have an account ? <a href="{{ url('/merchent-login') }}"> <span>Login</span></a> </p>
                                 </div>
                             </div>
                         </section>

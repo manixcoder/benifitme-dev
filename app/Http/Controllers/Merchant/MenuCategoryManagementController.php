@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Merchant;
 
 use Illuminate\Http\Request;
 use App\Models\MenuCategory;
+use App\Models\MenuModel;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -134,12 +135,25 @@ class MenuCategoryManagementController extends Controller
 
     public function getcategoryData($id)
     {
+        //dd($id);
         if (!empty($id)) {
             $id = $id;
         } else {
             $catData = DB::table('food_category')->where('merchent_id', Auth::user()->id)->orderby('id', 'ASC')->first();
             $id = $catData->id;
         }
+        $categoryDise = MenuModel::where('disk_category_id', $id)->get();
+        // dd($category_dise);
+        $data = array();
+        $data['categoryDise'] = $categoryDise;
+
+        $currentData = view('merchent.menu.render.category_dises')->with('categoryDise', $categoryDise)->render();
+
+        if ($currentData) {
+            return response()->json(['status' => 'success', 'currentData' => $currentData]);
+        }
+
+        return response()->json(['status' => 'danger', 'message' => 'No matches found.']);
     }
 
     /**

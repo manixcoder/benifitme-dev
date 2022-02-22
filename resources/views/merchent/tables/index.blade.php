@@ -9,6 +9,19 @@
     <div class="dashboard-heading">
         <h3>Table</h3>
     </div>
+    @if(Session::has('status'))
+    <div class="alert alert-{{ Session::get('status') }}">
+        <i class="ti-user"></i> {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+    </div>
+    @elseif(Session::get('status') == "danger")
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ Session::get('message') }}
+        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </a>
+    </div>
+    @endif
     <div class="new-requests">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -698,7 +711,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ url('merchant/table-management')}}/{{ $tables2->id }}/delete">
+                                                    <a href="{{ url('merchant/table-management/delete')}}/{{ $tables2->id }}">
                                                         <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon" width="20px">
                                                     </a>
                                                 </li>
@@ -1379,7 +1392,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ url('merchant/table-management')}}/{{ $tables4->id }}/delete">
+                                                    <a href="{{ url('merchant/table-management/delete')}}/{{ $tables4->id }}">
                                                         <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon" width="20px">
                                                     </a>
                                                 </li>
@@ -2017,7 +2030,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ url('merchant/table-management')}}/{{ $tables6->id }}/delete">
+                                                    <a href="{{ url('merchant/table-management/delete')}}/{{ $tables6->id }}">
                                                         <img src="{{ asset('public/merchemtAssets/images/delete.png')}}" alt="icon" width="20px">
                                                     </a>
                                                 </li>

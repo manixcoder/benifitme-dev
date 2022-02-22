@@ -9,6 +9,19 @@
     <div class="pra-sec">
         <p>Add New Table</p>
     </div>
+    @if(Session::has('status'))
+    <div class="alert alert-{{ Session::get('status') }}">
+        <i class="ti-user"></i> {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+    </div>
+    @elseif(Session::get('status') == "danger")
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ Session::get('message') }}
+        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </a>
+    </div>
+    @endif
     <div class="form-box  Customer-journey">
         <div class="row category-mr">
             <div class="generate">
@@ -16,6 +29,7 @@
                     @csrf
                     <div class="col-md-12 col-sm-12">
                         <div class="col-md-4 col-sm-4">
+                            
                             <div class="form-group">
                                 <label>Table Name</label>
                                 <input type="text" class="form-control  @error('table_name') is-invalid @enderror" placeholder="Table Name" value="{{ old('table_name') }}" name="table_name" id="table_name">

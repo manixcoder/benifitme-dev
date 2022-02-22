@@ -31,7 +31,7 @@ class DashboardController extends Controller
                 $q->where('name', 'user');
             })->get()->count();
         //dd($company_data);
-        return view('frontend.index')->with(array(
+        return view('index')->with(array(
             'user_data'         => $user_data,
             'merchent_data'     => $merchent_data
         ));
