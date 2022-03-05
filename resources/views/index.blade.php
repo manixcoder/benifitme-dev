@@ -35,6 +35,23 @@
         </div>
     </div>
 </section>
+@if(Session::has('status'))
+<div class="alert alert-{{ Session::get('status') }}">
+    <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">
+            ×
+        </span>
+    </button>
+</div>
+@elseif(Session::get('status') == "danger")
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ Session::get('message') }}
+    <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </a>
+</div>
+@endif
 <section class="topstores-sec fw text-center">
     <div class="container">
         <div class="site-heading">
@@ -225,155 +242,44 @@
         <div class="site-heading text-center">
             <h3>Hotels & Restaurants</h3>
             @php
-            $hotleRestroData = DB::table('users')
-            ->whereIn('company_type', [2, 3])
-            ->get();
+            $hotleRestroData = DB::table('users')->whereIn('company_type', [2, 3])->get();
             @endphp
         </div>
         <div class="restaurants-slider">
             <div class="loop owl-carousel owl-theme">
                 @forelse ($hotleRestroData as $resthotel)
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotel-img1.jpg')}}" alt="img" />
-                            </figure>
-                            @if($resthotel->company_type =='2')
-                            <span>Restaurant</span>
-                            @else
-                            <span>Hotel</span>
-                            @endif
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>{{ $resthotel->company_name }}</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>{{ $resthotel->city }}</h4>
+                <a href="#">
+                    <div class="item">
+                        <div class="hotel-bgbox">
+                            <div class="hotel-img">
+                                <figure>
+                                    <img src="{{ asset('public/frontendAssets/images/hotel-img1.jpg')}}" alt="img" />
+                                </figure>
+                                @if($resthotel->company_type =='2')
+                                <span>Restaurant</span>
+                                @else
+                                <span>Hotel</span>
+                                @endif
+                            </div>
+                            <div class="hotel-cont">
+                                <h3>{{ $resthotel->company_name }}</h3>
+                                <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>{{ $resthotel->city }}</h4>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 @empty
                 <div class="item">
                     <div class="hotel-bgbox">
                     </div>
                 </div>
                 @endforelse
-                <!-- div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img1.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img2.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img3.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/tabel-hotel.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img1.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img2.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/hotelnew-img3.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="hotel-bgbox">
-                        <div class="hotel-img">
-                            <figure>
-                                <img src="{{ asset('public/frontendAssets/images/tabel-hotel.jpg')}}" alt="img" />
-                            </figure>
-                            <span>Hotel</span>
-                        </div>
-                        <div class="hotel-cont">
-                            <h3>Emerald Bay Inn</h3>
-                            <h4><i><img src="{{ asset('public/frontendAssets/images/full_address.png')}}" alt="icon" /></i>New York</h4>
-                        </div>
-                    </div>
-                </div -->
+
             </div>
         </div>
     </div>
 </section>
-
+<!--Model --->
 <!--Login Modal  -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -461,20 +367,57 @@
                                 <figure>
                                     <img src="{{ asset('public/frontendAssets/images/logo_onboarding.png')}}" alt="logo_onboarding" width="80px">
                                 </figure>
-                                <form>
+                                <form method="POST" action="{{ url('/user-registration') }}" enctype="multipart/form-data">
+                                    @csrf
                                     <h3>Sign up with benefit.me</h3>
                                     <div class="form-box-sec">
                                         <div class="form-group">
-                                            <input type="name" class="form-control" placeholder="Username" required>
+                                            <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control @error('first_name') has-danger @enderror" placeholder="First Name" required>
+                                            @error('first_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="name" class="form-control" placeholder="Mobile Number" required>
+                                            <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control @error('last_name') has-danger @enderror" placeholder="Last Name" required>
+                                            @error('last_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email Address" required>
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') has-danger @enderror" placeholder="Username" required>
+                                            @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control password-show" placeholder="Create Password" required>
+                                            <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control @error('mobile') has-danger @enderror" placeholder="Mobile Number" required>
+                                            @error('mobile')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') has-danger @enderror" placeholder="Email Address" required>
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') has-danger @enderror password-show" placeholder="Create Password" required>
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <a class="referralhref" href="javascript:void(0);" data-toggle="modal" data-target="#referralModal">Have Referral Code ?</a>
@@ -488,12 +431,18 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary"> <img src="{{ asset('public/frontendAssets/images/l_facebook.png')}}" alt="facebook" width="22px"> Login with facebook</button>
+                                                        <a href="" type="submit" class="btn btn-primary">
+                                                            <img src="{{ asset('public/frontendAssets/images/l_facebook.png')}}" alt="facebook" width="22px">
+                                                            Login with facebook
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary text-color "> <img src="{{ asset('public/frontendAssets/images/l_google.png')}}" alt="" width="22px"> Login with Google</button>
+                                                        <a href="" type="submit" class="btn btn-primary text-color ">
+                                                            <img src="{{ asset('public/frontendAssets/images/l_google.png')}}" alt="" width="22px">
+                                                            Login with Google
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <p>Don't have an account ?
@@ -599,7 +548,6 @@
     </div>
 </div>
 @endsection
-
 @section('pagejs')
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
@@ -608,11 +556,9 @@
             $('#loginModal').modal('hide');
         });
 
-
-
         $("#login_mod").click(function() {
             $('#singupModal').modal('hide');
-           
+
         });
     });
 </script>

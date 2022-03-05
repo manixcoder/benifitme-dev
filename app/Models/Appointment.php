@@ -11,7 +11,7 @@ class Appointment extends Model
      *
      * @var string
      */
-    protected $table = 'awards';
+    protected $table = 'appointments';
 
     /**
      * The attributes that are mass assignable.
@@ -19,10 +19,12 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'regular_visitor',
-        'visitor_points',
-        'big_spender',
-        'spendor_point',
-        'sharing_app_points'
+        'merchent_id',
+        'appointment_title',
+        'appointment_start',
+        'appointment_end',        
+        'appointment_time_start',
+        'appointment_time_end',
+        'appointment_product_services'
     ];
 }

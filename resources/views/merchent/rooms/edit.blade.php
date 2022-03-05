@@ -9,6 +9,8 @@
     <div class="pra-sec">
         <p>Edit Room</p>
     </div>
+    <?php // dd($roomsData);
+    ?>
     @if(Session::has('status'))
     <div class="alert alert-{{ Session::get('status') }}">
         <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
@@ -18,15 +20,16 @@
     <div class="form-box">
         <div class="row">
             <div class="generate  Customer-journey">
-                <form method="POST" action="{{ url('/merchant/room-management/'..'/update-room') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('/merchant/room-management/'.$roomsData->id.'/update-room') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                         <h3>Basic Room Details</h3>
                     </div>
+
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group ">
                             <div class="coutome-uploadbtn">
-                                <input type="file" name="room_image" onchange="loadFile(event)" class="form-control upload-file" placeholder="Mobile Number">
+                                <input type="file" name="room_image" onchange="loadFile(event)" class="form-control @error('room_image') has-danger @enderror upload-file" placeholder="Mobile Number">
                                 @error('room_image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -44,7 +47,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Room Type</label>
                         <div class="form-group">
-                            <input type="text" name="room_type" id="room_type" class="form-control" placeholder="Room Type">
+                            <input type="text" name="room_type" value="{{ $roomsData->room_type}}" id="room_type" class="form-control @error('room_type') has-danger @enderror" placeholder="Room Type">
                             @error('room_type')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -55,7 +58,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Room For</label>
                         <div class="form-group">
-                            <select class="form-control givepoint-img" name="room_for">
+                            <select class="form-control @error('room_for') has-danger @enderror givepoint-img" name="room_for">
                                 <option value="">Select Room</option>
                                 @for($i=1; $i<=8;$i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -70,7 +73,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Number Of Room</label>
                         <div class="form-group">
-                            <select class="form-control givepoint-img" name="number_of_room">
+                            <select class="form-control @error('number_of_room') has-danger @enderror givepoint-img" name="number_of_room">
                                 <option value="">Select No of Room</option>
                                 @for($i=1; $i<=8;$i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -85,7 +88,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Min. Booking For (Nights)</label>
                         <div class="form-group">
-                            <select class="form-control givepoint-img" name="min_booking_for">
+                            <select class="form-control @error('min_booking_for') has-danger @enderror givepoint-img" name="min_booking_for">
                                 <option value="">Select Booking For</option>
                                 @for($i=1; $i<=8;$i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -100,7 +103,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Price/Night</label>
                         <div class="form-group">
-                            <input type="text" name="price_per_night" class="form-control" placeholder="$      500">
+                            <input type="text" name="price_per_night" value="{{ $roomsData->price_per_night}}" class="form-control @error('price_per_night') has-danger @enderror" placeholder="$      500">
                             @error('price_per_night')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -111,7 +114,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label>Discount</label>
                         <div class="form-group">
-                            <input type="text" name="discount" class="form-control discount-sale" placeholder="20">
+                            <input type="text" name="discount" value="{{ $roomsData->discount}}" class="form-control @error('discount') has-danger @enderror discount-sale" placeholder="20">
                             @error('discount')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -126,7 +129,7 @@
                     <div class="col-md-12">
                         <label>Description</label>
                         <div class="form-group">
-                            <textarea class="form-control" name="short_discription" placeholder="Write Description"></textarea>
+                            <textarea class="form-control @error('short_discription') has-danger @enderror" name="short_discription" placeholder="Write Description">{{ $roomsData->short_discription }}</textarea>
                             @error('short_discription')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -140,7 +143,7 @@
                     <div class="col-md-6">
                         <label>Room Sq Ft</label>
                         <div class="form-group">
-                            <select class="form-control givepoint-img" name="room_sq_ft">
+                            <select class="form-control @error('room_sq_ft') has-danger @enderror givepoint-img" name="room_sq_ft">
                                 <option>Select Room Sq Ft</option>
                                 @for($i=1; $i<=8;$i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -155,7 +158,7 @@
                     <div class="col-md-6">
                         <label>Single Beds</label>
                         <div class="form-group">
-                            <select class="form-control givepoint-img" name="single_beds">
+                            <select class="form-control @error('single_beds') has-danger @enderror givepoint-img" name="single_beds">
                                 <option>Select Single Beds</option>
                                 @for($i=1; $i<=8;$i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -194,7 +197,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Hotel Address</label>
-                            <input type="text" name="hotle_address" class="form-control" placeholder="3245 Twin House Lane, Springfield 84575">
+                            <input type="text" name="hotle_address" class="form-control" value="{{ $roomsData->hotle_address}}" placeholder="3245 Twin House Lane, Springfield 84575">
                             @error('hotle_address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -208,7 +211,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Check in</label>
-                            <input type="time" name="check_in" class="form-control" placeholder="12:00 pm">
+                            <input type="time" name="check_in" value="{{ $roomsData->check_in  }}" class="form-control" placeholder="12:00 pm">
                             @error('check_in')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -219,7 +222,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Check out</label>
-                            <input type="time" name="check_out" class="form-control" placeholder="3:00 pm">
+                            <input type="time" name="check_out" value="{{ $roomsData->check_out  }}" class="form-control" placeholder="3:00 pm">
                             @error('check_out')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -228,9 +231,16 @@
                         </div>
                     </div>
                     <div class="col-md-12">
+                        @if($roomsData->extra_rows !='')
+                        @php
+                        $extra_rows = unserialize($roomsData->extra_rows);
+                        @endphp
+                        @foreach($extra_rows as $extra)
                         <div class="form-group">
-                            <input type="text" name="extra_rows[]" class="form-control" placeholder="No Smoking">
+                            <input type="text" name="extra_rows[]" value="{{ $extra }}" class="form-control" placeholder="No Smoking">
                         </div>
+                        @endforeach
+                        @endif
                         <div id="more_add" style="margin-top: 10px;display: inline-block;width: 100%;"></div>
                     </div>
 
@@ -244,10 +254,16 @@
                         <h3>Health & Safety</h3>
                     </div>
                     <div class="col-md-12">
+                        @if($roomsData->health_safety !='')
+                        @php
+                        $health_safety = unserialize($roomsData->health_safety);
+                        @endphp
+                        @foreach($health_safety as $health)
                         <div class="form-group">
-                            <label>Health & Safety</label>
-                            <input type="text" name="health_safety[]" class="form-control" placeholder="Health & Safety">
+                            <input type="text" name="health_safety[]" value="{{ $health }}" class="form-control" placeholder="Health & Safety">
                         </div>
+                        @endforeach
+                        @endif
                         <div id="safty_add" style="margin-top: 10px;display: inline-block;width: 100%;"></div>
                     </div>
                     <div class="col-md-12">

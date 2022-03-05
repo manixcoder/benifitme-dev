@@ -143,7 +143,11 @@ class RoomManagementController extends Controller
      */
     public function edit(RoomModel $roomModel, $id)
     {
-        dd($id);
+        //dd($id);
+        $roomsData = RoomModel::find($id);
+        $data = array();
+        $data['roomsData']=$roomsData;
+        return view('merchent.rooms.edit', $data);
     }
 
     /**

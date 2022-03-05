@@ -10,11 +10,11 @@
         <h3>Add New Product</h3>
     </div>
     @if(Session::has('status'))
-        <div class="alert alert-{{ Session::get('status') }}">
-            <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-        </div>
-        @endif
+    <div class="alert alert-{{ Session::get('status') }}">
+        <i class="fa fa-building-o" aria-hidden="true"></i> {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+    </div>
+    @endif
     <div class="form-box">
         <div class="row">
             <div class="generate  Customer-journey">
@@ -45,14 +45,34 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
+                        @php
+                        $productCategory = DB::table('services_category')->get();
+
+                        @endphp
+                        @if(count($productCategory) > 0)
                         <div class="form-group">
-                            <input type="text" name="pro_category" class="form-control @error('pro_category') is-invalid @enderror" value="{{ old('pro_category') }}" placeholder="Category">
+                            <select name="pro_category" id="pro_category" class="form-control @error('pro_category') is-invalid @enderror">
+                                <option value="">Select category</option>
+                                @foreach($productCategory as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                            </select>
+                            <a href="{{ url('/merchant/services-category-management/create') }}">Create New Category</a>
+                            <!-- <input type="text" name="pro_category" class="form-control @error('pro_category') is-invalid @enderror" value="{{ old('pro_category') }}" placeholder="Category"> -->
                             @error('pro_category')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
+                        @else
+                        <div class="form-group">
+                            <select name="pro_category" id="pro_category" class="form-control @error('pro_category') is-invalid @enderror">
+                                <option value="">Select category</option>
+                            </select>
+                        </div>
+                        <a href="{{ url('/merchant/services-category-management/create') }}">Create New Category</a>
+                        @endif
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">

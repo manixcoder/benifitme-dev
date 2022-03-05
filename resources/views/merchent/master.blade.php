@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png" href="{{ asset('public/adminAssets/images/header_logo.png')}}" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    @if(Route::current()->uri == 'merchant/appointments-management/calendar-event' || Route::current()->uri == 'appointments-management/{$id}/edit')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="{{ asset('public/merchemtAssets/Fonts/font.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('public/merchemtAssets/css/style.css')}}">
+    @else
     <link rel="stylesheet" href="{{ asset('public/merchemtAssets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('public/merchemtAssets/Fonts/font.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('public/merchemtAssets/css/style.css')}}">
+    @endif
+
+
+
     @yield('pageCss')
     <title>{{ config('app.name', 'Laravel') }} @yield('pageTitle')</title>
 </head>
+
 <body>
     <header>
         <div class="benefitme">
@@ -145,6 +161,118 @@
     </div>
     @yield('content')
     @yield('pagejs')
+    @if(Route::current()->uri == 'merchant/appointments-management/calendar-event' || Route::current()->uri == 'appointments-management/{$id}/edit')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var SITEURL = "{{ url('/merchant/appointments-management') }}";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var calendar = $('#full_calendar_events').fullCalendar({
+                editable: true,
+                editable: true,
+                // events: SITEURL + "/calendar-event",
+                displayEventTime: true,
+                eventRender: function(event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function(appointment_start, appointment_end, allDay) {
+                    // var event_name = prompt('Event Name:');
+                    // if (event_name) {
+                    var appointment_start = $.fullCalendar.formatDate(appointment_start, "Y-MM-DD HH:mm:ss");
+                    var appointment_end = $.fullCalendar.formatDate(appointment_end, "Y-MM-DD HH:mm:ss");
+
+
+
+                    // alert(event_start);
+                    //  alert(event_end);
+                    $('#appointment_start').val(appointment_start);
+                    $('#appointment_end').val(appointment_end);
+                    // $.ajax({
+                    //     url: SITEURL + "/calendar-crud-ajax",
+                    //     data: {
+                    //         event_name: event_name,
+                    //         event_start: event_start,
+                    //         event_end: event_end,
+                    //         type: 'create'
+                    //     },
+                    //     type: "POST",
+                    //     success: function(data) {
+
+                    //         $('#start_date').val(event_start);
+                    //         $('#end_date').val(event_end);
+                    //         displayMessage("Event created.");
+
+
+                    //         calendar.fullCalendar('renderEvent', {
+                    //             id: data.id,
+                    //             title: event_name,
+                    //             start: event_start,
+                    //             end: event_end,
+                    //             allDay: allDay
+                    //         }, true);
+                    //         calendar.fullCalendar('unselect');
+                    //     }
+                    // });
+                    //}
+                },
+                eventDrop: function(event, delta) {
+                    var event_start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+                    var event_end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+                    $.ajax({
+                        url: SITEURL + '/calendar-crud-ajax',
+                        data: {
+                            title: event.event_name,
+                            start: event_start,
+                            end: event_end,
+                            id: event.id,
+                            type: 'edit'
+                        },
+                        type: "POST",
+                        success: function(response) {
+                            displayMessage("Event updated");
+                        }
+                    });
+                },
+                eventClick: function(event) {
+                    var eventDelete = confirm("Are you sure?");
+                    if (eventDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: SITEURL + '/calendar-crud-ajax',
+                            data: {
+                                id: event.id,
+                                type: 'delete'
+                            },
+                            success: function(response) {
+                                calendar.fullCalendar('removeEvents', event.id);
+                                displayMessage("Event removed");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        function displayMessage(message) {
+            toastr.success(message, 'Event');
+        }
+    </script>
+
+    @else
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="{{ asset('public/merchemtAssets/js/libaury.js')}}"></script>
@@ -502,6 +630,7 @@
             }
         }
     </script>
+    @endif
 </body>
 
 </html>

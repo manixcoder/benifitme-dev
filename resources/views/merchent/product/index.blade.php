@@ -45,7 +45,9 @@
                     @endphp
 
                     @forelse ($productData as $key => $product)
-
+                    @php
+                    $categoryData = DB::table('services_category')->where('id', $product->pro_category)->first();
+                    @endphp
                     <div class="current-offerBox">
                         <div class="row">
                             <div class="col-md-6">
@@ -61,8 +63,9 @@
                                     <h5>#{{ $key +$id }}</h5>
                                     <h4>
                                         {{ $product->product_name }}
+
                                         <span>
-                                            {{ $product->pro_category }}
+                                            {{ $categoryData->category_name }}
                                         </span>
                                     </h4>
                                     <p>
@@ -193,6 +196,9 @@
                     $id= '59595';
                     @endphp
                     @forelse ($productData as $key => $product)
+                    @php
+                    $categoryData = DB::table('services_category')->where('id', $product->pro_category)->first();
+                    @endphp
                     <div class="current-offerBox">
                         <div class="row">
                             <div class="col-md-6">
@@ -208,7 +214,7 @@
                                     <h4>
                                         {{ $product->product_name }}
                                         <span>
-                                            {{ $product->pro_category }}
+                                            {{ $categoryData->category_name }}
                                         </span>
                                     </h4>
                                     <p>

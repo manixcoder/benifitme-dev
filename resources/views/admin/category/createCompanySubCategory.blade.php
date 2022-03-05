@@ -65,7 +65,7 @@
             <div class="btn-group">
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        <a href="http://localhost/benifitme/admin/category-management" class="btn btn-primary">Cancel</a>
+                        <a href="{{ url('admin/category-management') }}" class="btn btn-primary">Cancel</a>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">

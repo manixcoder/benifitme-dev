@@ -96,7 +96,7 @@
                 <h4 class="mrtop20"><span>Email Address :</span> {{ $merchants->email }}</h4>
                 <h4 class="mrtop20"><span>Mobile Number :</span>{{ $merchants->mobile }}</h4>
                 <h4 class="mrtop20"><span>Date of Birth :</span>{{ $merchants->date_birthday }}</h4>
-                <h4 class="mrtop20"><span>Gender :</span>{{ $merchants->gender }} </h4>
+                <h4 class="mrtop20"><span>Gender :</span>@if($merchants->gender =='1') Male @elseif($merchants->gender =='2') Female @else Other @endif </h4>
                 <p class="pra">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                     laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
                     vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit.</p>
@@ -133,108 +133,32 @@
                                         <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px">
                                     </span>
                                 </h3>
+                                @if($dises->disk_discount !='')
                                 <p class="discount-fish">{{ $dises->disk_discount }}% Discount</p>
+                                @else
+                                @endif
                             </td>
                         </tr>
                         @empty
                         <p>No users</p>
                         @endforelse
 
-                        <!--tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza1.jpg')}}" alt="pizza1" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Deluxe veggie pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 20
-                                    <span class="pull-right active-icon"> Active <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px"></span>
-                                </h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza2.jpg')}}" alt="pizza2" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Farm house pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 40
-                                    <span class="pull-right active-icon"> Inactive <img src="{{ asset('public/adminAssets/images/toggle_off.png')}}" alt="toggle_of" width="30px"></span>
-                                </h3>
-                                <p class="discount-fish">30% Discount</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza.jpg')}}" alt="pizza" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Mexican green wave pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 40
-                                    <span class="pull-right active-icon"> Active <img src="images/toggle_on.png" alt="toggle_on" width="30px"></span>
-                                </h3>
-                                <p class="discount-fish">30% Discount</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza1.jpg')}}" alt="pizza1" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Deluxe veggie pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 20
-                                    <span class="pull-right active-icon"> Active <img src="images/toggle_on.png" alt="toggle_on" width="30px"></span>
-                                </h3>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza.jpg')}}" alt="pizza" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Mexican green wave pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 40
-                                    <span class="pull-right active-icon"> Active <img src="images/toggle_on.png" alt="toggle_on" width="30px"></span>
-                                </h3>
-                                <p class="discount-fish">30% Discount</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class=" mexican">
-                                <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza1.jpg')}}" alt="pizza1" width="200px">
-                                </figure>
-                            </td>
-                            <td class="left-right wave-pizza">
-                                <label>Deluxe veggie pizza</label>
-                                <p>With cheese &amp; oregano</p>
-                                <h3>$ 20
-                                    <span class="pull-right active-icon"> Active <img src="images/toggle_on.png" alt="toggle_on" width="30px"></span>
-                                </h3>
-                            </td>
-                        </tr -->
+
                     </tbody>
                 </table>
             </div>
         </div>
         <div role="tabpane1" class="tab-pane" id="messages">
+            <?php
+            $table2Data = DB::table('tables')->where('merchent_id', $merchants->id)->where('table_for', '2')->get();
+            $table4Data = DB::table('tables')->where('merchent_id', $merchants->id)->where('table_for', '4')->get();
+            $table6Data = DB::table('tables')->where('merchent_id', $merchants->id)->where('table_for', '6')->get();
+            //dd($tableData);
+            ?>
             <div class="table-responsive">
                 <table border="0" class="Companies ">
                     <tbody>
+
                         <tr>
                             <td class="mexican table-for">
                                 <figure>
@@ -244,10 +168,13 @@
                             <td class="left-right wave-pizza">
                                 <div>
                                     <span class="mr-left">Table for : <b>2</b></span>
-                                    <span>Number of Table : <b>3</b></span>
+                                    <span>Number of Table : <b>{{ count($table2Data)}}</b></span>
                                     <br>
                                     <label>Table Name 1</label>
-                                    <span class="pull-right active-icon"> Active <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px"></span>
+                                    <span class="pull-right active-icon">
+                                        Active
+                                        <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px">
+                                    </span>
                                     <div>
                                         <span class="mr-left">Avarage Booking Time : </span>
                                         <small> 2 hour</small>
@@ -264,7 +191,7 @@
                             <td class="left-right wave-pizza">
                                 <div>
                                     <span class="mr-left">Table for : <b>4</b></span>
-                                    <span>Number of Table : <b>6</b></span>
+                                    <span>Number of Table : <b>{{ count($table4Data)}}</b></span>
                                     <br>
                                     <label>Table Name 1</label>
                                     <span class="pull-right active-icon">
@@ -287,7 +214,7 @@
                             <td class="left-right wave-pizza">
                                 <div>
                                     <span class="mr-left">Table for : <b>6</b></span>
-                                    <span>Number of Table : <b>3</b></span>
+                                    <span>Number of Table : <b>{{ count($table6Data)}}</b></span>
                                     <br>
                                     <label>Table Name 1</label>
                                     <span class="pull-right active-icon">
@@ -301,7 +228,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="mexican table-for">
                                 <figure>
                                     <img src="{{ asset('public/adminAssets/images/table_two.png')}}" alt="table_two" width="100px">
@@ -313,36 +240,58 @@
                                     <span>Number of Table : <b>3</b></span>
                                     <br>
                                     <label>Table Name 1</label>
-                                    <span class="pull-right active-icon"> Active <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px"></span>
+                                    <span class="pull-right active-icon">
+                                        Active
+                                        <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px">
+                                    </span>
                                     <div>
                                         <span class="mr-left">Avarage Booking Time : </span>
                                         <small> 2 hour</small>
                                     </div>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="Promotions">
+            <?php
+            $meradvertingData = DB::table('merchent_advertings')->where('merchent_id', $merchants->id)->get();
+            //dd($disesData);
+            ?>
             <div class="table-responsive">
                 <table border="0" class="company-name Companies menu-table">
                     <tbody>
+                        @forelse ($meradvertingData as $adverting)
+                        <?php
+                        $productData = DB::table('products')->where('id', $adverting->ad_product)->first();
+                        // dd($adverting);
+                        ?>
                         <tr>
                             <td class=" mexican">
                                 <figure>
-                                    <img src="{{ asset('public/adminAssets/images/pizza.jpg')}}" alt="pizza" width="200px">
+                                    @if($adverting->banner_image !='')
+                                    <img src="{{ URL::asset('/public/uploads/') }}/{{ $adverting->banner_image ?? ''}}" alt="{{ $adverting->ad_title }}" width="200px">
+                                    @else
+                                    <img src="{{ asset('public/adminAssets/images/pizza.jpg')}}" alt="{{ $adverting->ad_title }}" width="200px">
+                                    @endif
                                 </figure>
                             </td>
                             <td class="left-right wave-pizza">
-                                <label>Advertisement Title</label>
-                                <p>Lenovo Ideapad 5</p>
-                                <a>https://www.benifitme.com/Lenovo Ideapad 5DSGVYF24&amp;marketplace
-                                    <span class="pull-right active-icon"> Active <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px"></span>
+                                <label>{{ $adverting->ad_title }}</label>
+                                <p>{{ $productData->product_name }}</p>
+                                <a href="{{ $adverting->product_url }}">{{ $adverting->product_url }}
+                                    <span class="pull-right active-icon">
+                                        Active
+                                        <img src="{{ asset('public/adminAssets/images/toggle_on.png')}}" alt="toggle_on" width="30px">
+                                    </span>
                                 </a>
                             </td>
                         </tr>
+                        @empty
+                        <p>No users</p>
+                        @endforelse
                         <tr>
                             <td class=" mexican">
                                 <figure>

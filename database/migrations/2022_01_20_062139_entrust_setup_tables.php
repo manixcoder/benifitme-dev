@@ -18,6 +18,8 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+           // $table->bigInteger('parent_id')->default('0');
+           // $table->enum('r_type', ['1', '2','0'])->default(0)->comment('0 = Default 1 = businesscategory; 2 = usercategory');
             $table->timestamps();
         });
 

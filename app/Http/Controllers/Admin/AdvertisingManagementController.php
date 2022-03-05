@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Redirect;
 use Validator;
 use App\Models\Adverting;
+use App\Models\Advertings;
 
 class AdvertisingManagementController extends Controller
 {
@@ -40,10 +41,11 @@ class AdvertisingManagementController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'ad_name' => 'required',
             'link' => 'required',
-            'ad_image' => 'required',
+            //'ad_image' => 'required',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -56,7 +58,8 @@ class AdvertisingManagementController extends Controller
             } else {
                 $ad_image = '760614_1.jpg';
             }
-            $userData = Adverting::create([
+
+            $userData = Advertings::create([
                 'ad_name' => $request->has('ad_name') ? $request->ad_name : '',
                 'link' => $request->has('link') ? $request->link : '',
                 'ad_image' => $ad_image,
@@ -76,7 +79,7 @@ class AdvertisingManagementController extends Controller
      */
     public function show($id)
     {
-        foreach (Adverting::lazy() as $flight) {
+        foreach (Advertings::lazy() as $flight) {
             dd($flight);
         }
     }
@@ -107,13 +110,13 @@ class AdvertisingManagementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Adverting  $Adverting
+     * @param  \App\Models\Advertings  $Advertings
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Adverting  $Adverting, $id)
+    public function destroy(Advertings  $Advertings, $id)
     {
-        Adverting::find($id)->delete();
+        Advertings::find($id)->delete();
         return redirect('/admin/advertising-management')->with(['status' => 'success', 'message' => 'Advertising Delete Successfully!']);
     }
 }

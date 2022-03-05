@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\LicenseClassModel;
-use Auth;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
-use Redirect;
-use Validator;
 use Session;
 use Illuminate\Support\Facades\Hash;
+use Redirect;
+use Validator;
+use App\Models\UserRoleRelation;
+use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -36,6 +38,69 @@ class HomeController extends Controller
             return redirect('/validate-user');
         }
     }
+    public function userRegistration(Request $request)
+    {
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'name'              => 'required',
+            'mobile'            => 'required',
+            'email'             => 'required',
+            'password'          => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        try {
+            $userData = User::create([
+                'user_role' => 3,
+                'first_name'  => $request->has('first_name') ? $request->first_name : '',
+                'last_name'  => $request->has('last_name') ? $request->last_name : '',
+                'name'  => $request->has('name') ? $request->name : '',
+                'mobile'  => $request->has('mobile') ? $request->mobile : '',
+                'email'  => $request->has('email') ? $request->email : '',
+                'otp' =>  $this->otp_code(),
+                'password'  => Hash::make($request->input('password')),
+            ]);
+            $roleArray = array(
+                'user_id' => $userData->id,
+                'role_id' => 3,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            );
+            UserRoleRelation::create($roleArray);
+            $userData = User::find($userData->id);
+            $data = array();
+            $data['userData'] = $userData;
+            return view('userveification', $data);
+            return redirect('/verification-veiw')->with(['userData' => $userData, 'status' => 'success', 'message' => 'Registration Successfully!']);
+        } catch (\Exception $e) {
+            return back()->with(['status' => 'danger', 'message' => $e->getMessage()]);
+            return back()->with(['status' => 'danger', 'message' => 'Some thing went wrong! Please try again later.']);
+        }
+    }
+    public function userVerifyOtp(Request $request)
+    {
+        // dd($request->all());
+        $otp = implode("", $request->otp);
+        $userdata = User::where('id', $request->user_id)->first();
+        if ($userdata->otp != $otp) {
+            $data = array();
+            $data['userData'] = $userdata;
+            return view('userveification', $data);
+        } else {
+            User::where('id', $request->user_id)->update([
+                'email_verified_at' => date("Y-m-d H:i:s"),
+                'otp' => 'NULL'
+            ]);
+            return redirect('/')->with(array(
+                'status' => 'success',
+                'message' => 'OTP matched successfully.'
+            ));
+        }
+    }
 
     public function sendOTPOnEmail(Request $request)
     {
@@ -43,10 +108,9 @@ class HomeController extends Controller
         $otp_code = $this->otp_code();
         if (!empty($userdata)) {
             $postdata = DB::table('users')->where('email', $request->email)->update([
-                'otp' => $otp_code
+                'otp' => $this->otp_code()
             ]);
         }
-
         $userdata = User::where('email', $request->email)->first();
         Session::put('user_id', $userdata->id);
         Session::put('user_email', $userdata->email);
@@ -105,6 +169,9 @@ class HomeController extends Controller
             $role = Auth::user()->roles->first();
             //dd($role);
             if (!empty($role)) {
+                User::where('id', Auth::user()->id)->update([
+                    'last_login' => date("Y-m-d H:i:s")
+                ]);
                 return redirect('/' . $role->name);
             }
         }
@@ -114,11 +181,7 @@ class HomeController extends Controller
     public function getSubCategory(Request $request, $id)
     {
         try {
-            $list = DB::table('categories')
-                ->where('parent_id', '=', $id)
-                ->where('c_type', '=', '1')
-                ->get();
-            //dd($list);
+            $list = DB::table('categories')->where('parent_id', '=', $id)->where('c_type', '=', '1')->get();
             if ($list) {
                 $data['status'] = 'success';
             } else {
@@ -147,5 +210,26 @@ class HomeController extends Controller
         } else {
             return $randomString;
         }
+    }
+
+    public function subscriptionPlan(Request $request)
+    {
+        // dd($request->all());
+        // dd(Auth::user()->id);
+        $userData = DB::table('users')->where('id', Auth::user()->id)->update([
+            'subscription_id' => $request->plan_id
+        ]);
+
+        return redirect('/payment-method')->with(['status' => 'success', 'message' => 'New Company added Successfully!']);
+    }
+
+    public function subscriptionPayment()
+    {
+        
+    }
+
+
+    public function createProductCategory()
+    {
     }
 }

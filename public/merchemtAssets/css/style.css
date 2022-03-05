@@ -136,7 +136,7 @@ header .benefitme .user-dropdown button#dLabel {
 .add-newoffer .form-box .bgcolor{
     background-color: #06C6B3;
     border:none;
-    color: #fff;
+    color: #FFFFFF;
 }
 .add-newoffer .form-box .form-control {
     height: 48px;
@@ -186,7 +186,7 @@ header .benefitme .user-dropdown button#dLabel {
     font-family: 'PF Bague Sans Pro';
 }
 .add-newoffer .Customer-journey option{
-    color: #000;
+    color: #000000;
 }
 .add-newoffer .Customer-journey .text-color{
     font-size: 18px;
@@ -217,7 +217,7 @@ header .benefitme .user-dropdown button#dLabel {
 .add-newoffer .generate p {
     margin-top: 0px;
     font-size: 16px;
-    color: #000;
+    color: #000000;
     font-weight: bold;
 }
 .add-newoffer .code-img {
@@ -266,13 +266,13 @@ header .benefitme .user-dropdown button#dLabel {
     font-size: 16px;
     padding-right: 40px;
     text-decoration: none;
-    color: #fff;
+    color: #FFFFFF;
 }
 .footer-sec .gogle-play {
     padding-right: 25px;
     font-size: 18px;
     font-weight: 600;
-    color: #fff;
+    color: #FFFFFF;
 }
 /* -----------footer-css--------- */
 
@@ -365,7 +365,7 @@ header .benefitme .user-dropdown button#dLabel {
     width: 12px;
     left: 2px;
     bottom: 2px;
-    background-color: #fff;
+    background-color: #FFFFFF;
     -webkit-transition: .4s;
     transition: .4s;
     text-align: center;
@@ -491,7 +491,7 @@ header .benefitme .user-dropdown button#dLabel {
     font-size: 18px;
     line-height: 26px;
     font-family: 'Poppins';
-    background-color: #fff;
+    background-color: #FFFFFF;
     display: inline-block;
     margin: 0 !important;
 }
@@ -508,7 +508,7 @@ header .benefitme .user-dropdown button#dLabel {
     padding: 10px 50px;
     text-decoration: none;
     border: none;
-    background-color: #fff;
+    background-color: #FFFFFF;
     margin-right: 0;
 }
 .check-in-tabing ul.nav.nav-tabs a:hover{
@@ -516,7 +516,7 @@ header .benefitme .user-dropdown button#dLabel {
 }
 .check-in-tabing ul.nav.nav-tabs li a:hover , .check-in-tabing ul.nav.nav-tabs li.active a{
     background-color: #06C6B3;
-    color: #fff;
+    color: #FFFFFF;
 }
 .check-in-add .generate.Customer-journey figure img {
     width: auto;
@@ -551,7 +551,7 @@ header .benefitme .user-dropdown button#dLabel {
     display: inline-block;
     width: 950px;
     vertical-align: middle;
-    background: #ffff;
+    background: #FFFFFF;
     border-radius: 16px;
     box-shadow: 0px 12px 14px #00000029;
 }
@@ -641,7 +641,7 @@ header .benefitme .user-dropdown button#dLabel {
 }
 .login .login-facebook button {
     font-size: 15px;
-    background: #fff;
+    background: #FFFFFF;
     color: #1977F3;
     border: 1px solid #1977F3;
     margin-bottom: 24px;
@@ -728,7 +728,7 @@ header .benefitme .user-dropdown button#dLabel {
     width: 12px;
     left: 2px;
     bottom: 2px;
-    background-color:#fff;
+    background-color:#FFFFFF;
     -webkit-transition: .4s;
     transition: .4s;
     text-align: center;
@@ -742,7 +742,7 @@ header .benefitme .user-dropdown button#dLabel {
     width: 12px;
     right: 2px;
     bottom: 2px;
-    background-color:#fff;
+    background-color:#FFFFFF;
     -webkit-transition: .4s;
     transition: .4s;
     text-align: center;
@@ -802,16 +802,19 @@ header .benefitme .user-dropdown button#dLabel {
     font-family: 'PF Bague Sans Pro';
     font-weight: 400;
 }
-.Subscription a {
+.Subscription a, .btn-free {
     font-size: 18px;
     padding: 10px 20px 10px;
-    background: #fff;
+    background: #FFFFFF;
     text-decoration: none;
     margin-top: 0px;
     color: #06C6B3;
     border-radius: 5px;
     font-family: 'PF Bague Sans Pro';
     font-weight: 400;
+    display: inline-block;
+    width: auto;
+    height: auto;
 }
 .subscri-features {
     float: left;
@@ -872,7 +875,7 @@ header .benefitme .user-dropdown button#dLabel {
     width: 14px;
 }
 .basic-sec{
-    background: #fff !important;
+    background: #FFFFFF !important;
     width: auto;
 }
 .basic-sec figure{
@@ -883,7 +886,7 @@ header .benefitme .user-dropdown button#dLabel {
     width: auto !important;
 }
 .basic-sec h3{
-     color: #000 !important;
+     color: #000000 !important;
      text-align: center !important;
      font-size: 32px !important;
      line-height: 23px !important;
@@ -943,7 +946,7 @@ header .benefitme .user-dropdown button#dLabel {
 .login-with .form-box-sec ul label {
     width: 100%;
     font-size: 18px;
-    color: #999;
+    color: #999999;
     font-weight: 400;
     line-height: 24px;
     margin: 14px 0px;
@@ -963,8 +966,8 @@ header .benefitme .user-dropdown button#dLabel {
     height: 36px;
     text-align: center;
     outline: none;
-    color: #999;
-    border: 1px solid #999;
+    color: #999999;
+    border: 1px solid #999999;
     border-radius: 4px;
 }
 .login-with.otp-box {
@@ -1028,7 +1031,7 @@ header .benefitme .user-dropdown button#dLabel {
     font-size: 17px;
     line-height: 26px;
     font-family: 'PF Bague Sans Pro';
-    background-color: #fff;
+    background-color: #FFFFFF;
     display: inline-block;
     margin: 0 !important;
 }
@@ -1037,13 +1040,13 @@ header .benefitme .user-dropdown button#dLabel {
     padding: 10px 40px;
     text-decoration: none;
     border: none;
-    background-color: #fff;
+    background-color: #FFFFFF;
     margin-right: 0;
     border-radius: 0px;
 }
 .appoint-ment .new-requests ul.nav.nav-tabs li a:hover , .appoint-ment .new-requests ul.nav.nav-tabs li.active a{
     background-color: #06C6B3;
-    color: #fff;
+    color: #FFFFFF;
 }
 .appoint-ment .new-requests {
     float: left;
@@ -1124,7 +1127,7 @@ header .benefitme .user-dropdown button#dLabel {
     font-weight: 400;
     margin: 0 0px 0px 20px;
     border: 1px solid #9B3270;
-    background: #fff;
+    background: #FFFFFF;
     color: #9B3270;
     display: inline-block;
     text-align: center;
@@ -1132,7 +1135,7 @@ header .benefitme .user-dropdown button#dLabel {
     padding-top: 7px;
 }
 .appoint-ment .new-requests .john-doe-box span a.accept-bg {
-    color: #fff;
+    color: #FFFFFF;
     background: #06C6B3;
     border: none;
 }
@@ -1232,7 +1235,7 @@ header .benefitme .user-dropdown button span img {
     z-index: 1;
     width: 100px;
     height: 100px;
-    background: #EEE;
+    background: #eeeeee;
     border-radius: 50%;
     top: 50px;
     left: 50px;
@@ -1260,7 +1263,7 @@ header .benefitme .user-dropdown button span img {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: black;
+    background-color: #000000;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -1270,11 +1273,11 @@ header .benefitme .user-dropdown button span img {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background: #FFF;
+    background: #FFFFFF;
     padding: 15px;
     font-size: 13px;
-    box-shadow: 1px 1px 0 #DDD,
-                2px 2px 0 #BBB;
+    box-shadow: 1px 1px 0 #DDDDDD,
+                2px 2px 0 #BBBBBB;
   }
 .dashboard-chartbox  .legend li {
     width: 110px;
@@ -1295,7 +1298,7 @@ header .benefitme .user-dropdown button span img {
     background: rgba(255, 255, 255, .8);
     position: absolute;
     display: none;
-    color:#333;
+    color:#333333;
     
   }
   .dashboard-heading {
@@ -1391,7 +1394,7 @@ header .benefitme .user-dropdown button span img {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background: #FFF;
+    background: #FFFFFF;
     padding: 0;
     font-size: 12px;
     box-shadow: none;
@@ -1426,7 +1429,7 @@ header .benefitme .user-dropdown button span img {
     height: 100px;
     overflow: hidden;
     margin-right: 10px;
-    border: 1px solid #eee;
+    border: 1px solid #eeeeee;
 }
 .current-offerBox .imgbox img {
     width: 100%;
@@ -1470,7 +1473,7 @@ header .benefitme .user-dropdown button span img {
 .current-offerBox .current-offercont p .discount-cont {
     background: rgb(255 0 0 / 70%);
     padding: 8px 15px;
-    color: #fff;
+    color: #FFFFFF;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -1528,7 +1531,7 @@ header .benefitme .user-dropdown button span img {
 .addproduct-btn {
     background: #06c6b3;
     padding: 12px 15px;
-    color: #fff !important;
+    color: #FFFFFF !important;
     border-radius: 5px;
     font-size: 14px;
     font-weight: 500;
@@ -1621,7 +1624,7 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     margin: 0;
 }
 .add-newoffer span.box-input small {
-    background: #fff;
+    background: #FFFFFF;
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -1642,7 +1645,7 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     left: 5px;
     width: 6px;
     height: 12px;
-    border: solid #fff;
+    border: solid #FFFFFF;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
@@ -1755,7 +1758,7 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     position: relative;
 }
 
-.calendar .header{height:50px;position:relative;color:#fff}
+.calendar .header{height:50px;position:relative;color:#FFFFFF}
 .calendar .header .text{
     position:absolute;
     top:0;left:0;
@@ -1782,10 +1785,10 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
+    color: #555555;
+    background-color: #FFFFFF;
     background-image: none;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 7px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -1795,12 +1798,12 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
 }
 .calendar .header.active .text{transform:rotateX(0deg);opacity:1}
 .months{width:100%;height: 320px;position:relative}
-.months .hr{height:1px;margin:15px 0;background:#ccc}
+.months .hr{height:1px;margin:15px 0;background:#cccccc}
 .Jessica-pra.calendar-box .month {
     padding: 15px;
     width: inherit;
     height: inherit;
-    background: #fff;
+    background: #FFFFFF;
     position: absolute;
     backface-visibility: hidden;
     transition: all .4s ease-in-out 0s;
@@ -1819,10 +1822,10 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     display: table-cell;
     font-size: 16px;
 }
-.table .row .cell.disable{color:#ccc}
+.table .row .cell.disable{color:#cccccc}
 .table .row .cell span{display:block;width:28px;height:28px;line-height:28px;transition:color,background .4s ease-in-out 0s}
 .Jessica-pra.calendar-box .table .row .cell.active span{
-    color:#fff;
+    color:#FFFFFF;
     background-color:#06C6B3;
     border-radius: 50px;
     font-size: 16px;
@@ -1843,14 +1846,14 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
 .header.active [data-action]{opacity:1}
 
 [data-theme="jan"]{background-color:none}
-[data-theme="jan"] .row.head{color:#000}
+[data-theme="jan"] .row.head{color:#000000}
 [data-theme="jan"] .header .text,
 [data-theme="jan"] .table .row .cell.active span{background-color:none}
 
 [data-theme="feb"]{background-color:none}
 [data-theme="feb"] 
 .Jessica-pra.calendar-box .row.head{
-       color:#000;
+       color:#000000;
        font-size: 18px;
 }
 [data-theme="feb"] .header .text,
@@ -1862,47 +1865,47 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
 [data-theme="mar"] .table .row .cell.active span{background-color:none}
 
 [data-theme="apr"]{background-color:none}
-[data-theme="apr"] .row.head{color:#000}
+[data-theme="apr"] .row.head{color:#000000}
 [data-theme="apr"] .header .text,
 [data-theme="apr"] .table .row .cell.active span{background-color:none}
 
 [data-theme="may"]{background-color:none}
-[data-theme="may"] .row.head{color:#000}
+[data-theme="may"] .row.head{color:#000000}
 [data-theme="may"] .header .text,
 [data-theme="may"] .table .row .cell.active span{background-color:none}
 
 [data-theme="jun"]{background-color:none}
-[data-theme="jun"] .row.head{color:#000}
+[data-theme="jun"] .row.head{color:#000000}
 [data-theme="jun"] .header .text,
 [data-theme="jun"] .table .row .cell.active span{background-color:none}
 
 [data-theme="jul"]{background-color:none}
-[data-theme="jul"] .row.head{color:#000}
+[data-theme="jul"] .row.head{color:#000000}
 [data-theme="jul"] .header .text,
 [data-theme="jul"] .table .row .cell.active span{background-color:none}
 
 [data-theme="aug"]{background-color:none}
-[data-theme="aug"] .row.head{color:#000}
+[data-theme="aug"] .row.head{color:#000000}
 [data-theme="aug"] .header .text,
 [data-theme="aug"] .table .row .cell.active span{background-color:none}
 
 [data-theme="sep"]{background-color:none}
-[data-theme="sep"] .row.head{color:#000}
+[data-theme="sep"] .row.head{color:#000000}
 [data-theme="sep"] .header .text,
 [data-theme="sep"] .table .row .cell.active span{background-color:none}
 
 [data-theme="oct"]{background-color:none}
-[data-theme="oct"] .row.head{color:#000}
+[data-theme="oct"] .row.head{color:#000000}
 [data-theme="oct"] .header .text,
 [data-theme="oct"] .table .row .cell.active span{background-color:none}
 
 [data-theme="nov"]{background-color:none}
-[data-theme="nov"] .row.head{color:#000}
+[data-theme="nov"] .row.head{color:#000000}
 [data-theme="nov"] .header .text,
 [data-theme="nov"] .table .row .cell.active span{background-color:none}
 
 [data-theme="dec"]{background-color:none}
-[data-theme="dec"] .row.head{color:#000}
+[data-theme="dec"] .row.head{color:#000000}
 [data-theme="dec"] .header .text,
 [data-theme="dec"] .table .row .cell.active span{background-color:none}
 .Jessica-pra.appointment a {
@@ -1988,7 +1991,7 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     margin-bottom: 25px;
 }
 .appointment-for.title .recurring {
-    color: #000;
+    color: #000000;
 }
 .new-requests button {
     min-width: 100%;
@@ -2004,7 +2007,7 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
 .new-requests .bgcolor {
     background-color: #06C6B3;
     border: none;
-    color: #fff;
+    color: #FFFFFF;
 }
 .new-requests .Jessica-pra.calendar-box {
     padding-left: 0px;
@@ -2022,12 +2025,12 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     width: 100%;
 }
 .form-box.check-in-add.award-sec a {
-    font-size: 16px;
-    text-decoration: none;
-    color: #777777;
     font-family: 'PF Bague Sans Pro';
     font-weight: 400;
     line-height: 24px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #777777;
 }
 .form-box.check-in-add.award-sec a img{
     width: 15px;
@@ -2039,16 +2042,304 @@ ul.nav.nav-tabs.number-sec li a:hover ,  ul.nav.nav-tabs.number-sec li.active a{
     color: #212121;
     font-weight: 400;
     font-family: 'PF Bague Sans Pro';
+
 }
-.regular-visitor {
+.regular-visitor{
     float: left;
     width: 100%;
     padding: 40px 20px;
 }
-.regular-visitor .mascot {
+.regular-visitor .mascot{
     font-size: 24px;
     line-height: 35px;
     color: #02BB46;
     font-weight: 700;
     font-family: 'PF Bague Sans Pro';
+}
+#Message-popup .modal-header button.close , .ConnectPclose , #saveMessage-popup .modal-header button.close {
+    opacity: 1 !important;
+    width: 25px;
+    height: 25px;
+    line-height: 1!important;
+    background: #9B3270 !important;
+    padding: 0 !important;
+    text-shadow: none!important;
+    color: #fff!important;
+    font-weight: 400!important;
+    border-radius: 30px!important;
+    margin-top: 10px!important;
+    margin-right: 10px!important;
+    text-align: center!important;
+    padding-left: 2px !important;
+    display: inline-block;
+}
+#Message-popup  .modal-header , #ConnectProduct .modal-header , #saveMessage-popup .modal-header  {
+    padding: 0;
+    border: 0;
+}
+#Message-popup  .modal-body , #ConnectProduct .modal-body , #saveMessage-popup .modal-body {
+    padding: 0 30px;
+    display: inline-block;
+    width: 100%;
+}
+#Message-popup .modal-body .messagepopCant , #ConnectProduct .messagepopCant , #saveMessage-popup  .messagepopCant{
+    float: left;
+    width: 100%;
+}
+#Message-popup .modal-body .messagepopCant h3 , #ConnectProduct .modal-body .messagepopCant h3 , #saveMessage-popup .modal-body .messagepopCant h3 {
+    font-size: 24px;
+    margin-top: 0;
+    color: #000000;
+    font-weight: 700;
+    font-family: 'PF Bague Sans Pro';
+    margin-bottom: 15px;
+}
+.messagepopCant .form-group {
+    float: left;
+    width: 100%;
+}
+.messagepopCant .form-group textarea.form-control {
+    height: 150px;
+    border: 1px solid #707070;
+    color: #000;
+    font-size: 14px;
+    letter-spacing: .2px;
+}
+.comanebtn {
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 24px;
+    background: #06C6B3;
+    color: #FFFFFF;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'PF Bague Sans Pro';
+    border-radius: 5px;
+}
+.messagepopCant .form-group .comanebtn {
+    margin: 25px auto 15px;
+    display: block;
+    width: auto !important;
+    min-width: 190px;
+}
+#Message-popup .modal-content , #ConnectProduct .modal-content , #saveMessage-popup .modal-content  {
+    border: 0;
+    box-shadow: 0 0 30px rgb(0 0 0 / 12%);
+}
+.offerconnect {
+    float: left;
+    width: 100%;
+}
+.offerconnect .nav-tabs {
+    border: 0;
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.offerconnect .nav-tabs li a {
+    margin: 0;
+    background: #fff;
+    color: #000;
+    padding: 10px 25px;
+    border: 1px solid #06C6B3 !important;
+    box-shadow: none;
+    border-radius: 0 !important;
+}
+
+.offerconnect .nav-tabs li.active a {
+    background: #06C6B3;
+    color: #fff;
+}
+.offerconnect input.form-control {
+    height: 42px;
+}
+.offerconnect .tab-pane {
+    border: 0 !important;
+    box-shadow: none !important;
+    float: left;
+    width: 100%;
+}
+.offerconnect .tab-pane .firstimg {
+    float: left;
+    width: 70px;
+    overflow: hidden;
+    height: 70px;
+    border: 1px solid #ddd;
+}
+.offerconnect .tab-pane .firstimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 2px;
+}
+.offerconnect .tab-pane  td {
+    vertical-align: middle;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+.offerconnect .tab-pane td .tdcheckbox {
+    float: right;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    border: 1px solid #9B3270;
+}
+.offerconnect .tab-pane td .tdcheckbox input.checkbox {
+    position: absolute;
+    top: .0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+}
+.offerconnect .tab-pane td .tdcheckbox small {
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    display: inline-block;
+    line-height: 18px;
+    vertical-align: top;
+    color: #9B3270;
+    opacity: 0;
+}
+.offerconnect .tab-pane td .tdcheckbox input.checkbox:checked + small{
+    opacity: 1;
+}
+#saveMessage-popup .modal-dialog {
+    width: 200px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+#saveMessage-popup .modal-dialog figure img {
+    width: 30px;
+    margin-bottom: 8px;
+}
+#saveMessage-popup .modal-dialog  p {
+    color: #000;
+    font-size: 14px;
+}
+.roompopup-sec .modal-content.appoint-ment {
+    width: 100%;
+    padding: 0;
+}
+.roompopup-sec .appoint-ment .new-requests .john-doe-box .pizza-sec {
+    float: left;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.roompopup-sec  .appoint-ment .new-requests .john-doe-box figure img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100% !important;
+}
+.roompopup-sec  .appoint-ment .new-requests .john-doe-box.pad0 {
+    padding: 0;
+    box-shadow: none !important;
+}
+.roompopup-sec .appoint-ment .new-requests .john-doe-box.pad0 .text-contant {
+    width: 100%;
+    padding: 0;
+}
+.roompopup-sec  .modal-header {
+    padding: 0;
+    border: 0;
+}
+.roompopup-sec .Jessica-pra {
+    width: 100% !important;
+}
+
+.roompopup-sec .imgprofile  .Jessica-pra {
+    width: calc(100% - 120px) !important;
+}
+table#calendar {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-radius: 0;
+}
+
+table#calendar {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-radius: 0;
+}
+table#calendar th {
+    color: #fff !important;
+    padding: 10px 15px;
+    font-size: 16px  !important;
+    vertical-align: middle !important;
+    background: #9B3270 !important;
+}
+table#calendar th span#month {
+    vertical-align: middle;
+    display: inline-block;
+}
+table#calendar tr#monthrow th {
+    padding: 15px;
+}
+table#calendar tr#monthrow th button {
+    color: #fff !important;
+    padding: 0;
+    height: auto;
+    min-width: 0;
+    margin: 0;
+}
+table#calendar .daysoftheweek th {
+    background: #fff !important;
+    color: #555!important;
+    font-size: 12px !important;
+}
+table#calendar  tr.week td {
+    padding: 20px 18px;
+    background: #fff;
+    color: #000;
+}
+table#calendar tr.week td.current-date {
+    color: #fff;
+    background: #06C6B3;
+    text-align: center !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    border: none;
+    display: table-cell;
+}
+table#calendar  tr.week td {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#calendar  tr.week td:first-child{border-left: 1px solid #ddd;}
+table#calendar .daysoftheweek th{
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#calendar .daysoftheweek th:first-child{border-left: 1px solid #ddd;}
+.roompopup-sec .calender-pgsec {
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.roompopup-sec .appoint-ment .text-contant span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.roompopup-sec .appoint-ment .text-contant span a {
+    min-width: auto;
+    border: 0;
+    margin-left: 10px;
+    padding: 0 !important;
+    line-height: 1 !important;
+    min-height: auto !important;
+}
+.roompopup-sec .appoint-ment .text-contant span a img {
+    width: 14px;
 }
