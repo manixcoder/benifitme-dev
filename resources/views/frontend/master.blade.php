@@ -13,11 +13,11 @@
     <link href="{{ asset('public/frontendAssets/fonts/fonts.css')}}" rel="stylesheet">
     <!-- <link href="{{ asset('public/frontendAssets/css/responsive.css')}}" rel="stylesheet"> -->
     <link rel="icon" href="{{ asset('public/frontendAssets/images/favicon.png')}}" type="skype-img" />
+    @yield('pageCss')
     <title>{{ config('app.name', 'Laravel') }} Customer @yield('pageTitle')</title>
 </head>
 
 <body>
-    
     @include('frontend.includes.header')
     @yield('content')
     @yield('pagejs')
@@ -48,10 +48,10 @@
                         <div class="footer-leftpad">
                             <h5>Quick Links</h5>
                             <ul>
-                                <li><a href="#">Browse Offers</a></li>
-                                <li><a href="#">Hot Discounts</a></li>
-                                <li><a href="#">Calendar</a></li>
-                                <li><a href="#">Be a Partner</a></li>
+                                <li><a href="{{ url('/') }}">Browse Offers</a></li>
+                                <li><a href="{{ url('/') }}">Hot Discounts</a></li>
+                                <li><a href="{{ url('/') }}">Calendar</a></li>
+                                <li><a href="{{ url('/') }}">Be a Partner</a></li>
                             </ul>
                         </div>
                     </div>
@@ -60,10 +60,10 @@
                             <div class="pull-right">
                                 <h5>Legal</h5>
                                 <ul>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="{{ url('about-us') }}">About Us</a></li>
+                                    <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ url('terms-condition') }}">Terms & Conditions</a></li>
+                                    <li><a href="{{ url('contact-us') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -81,7 +81,6 @@
     <script src="{{ asset('public/frontendAssets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('public/frontendAssets/js/owl.animate.js') }}"></script>
     <script src="{{ asset('public/frontendAssets/js/aos.js') }}"></script>
-
     <script>
         $(window).bind("load", function() {
             if (document.readyState === "complete") {

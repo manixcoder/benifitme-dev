@@ -22,11 +22,11 @@
         <div class="col-md-6 ">
             <p>Business Category</p>
         </div>
-        <div class="col-md-6 text-right">
+        <!-- <div class="col-md-6 text-right">
             <a href="#">
-                
+
             </a>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="sub-category">
@@ -50,13 +50,15 @@
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
+
         <div role="tabpanel" class="tab-pane active" id="home">
+            <div class="col-md-12 text-right">
+                <a class="add_new_button" href="{{ url('admin/category-management/company-category') }}">
+                    Add New Company Category
+                </a>
+            </div>
             <div class="table-responsive">
-                <div class="col-md-6 text-right">
-                    <a href="{{ url('admin/category-management/company-category') }}">
-                        Add New Company Category
-                    </a>
-                </div>
+
                 <table border="0" class="table">
                     <tbody>
                         @php
@@ -94,12 +96,13 @@
             @php
             $bsubcategories = DB::table('categories')->where('parent_id','!=','0')->where('c_type','=','1')->get();
             @endphp
+            <div class="col-md-12 text-right">
+                <a class="add_new_button" href="{{ url('admin/category-management/add-sub-category') }}">
+                    Add New Sub Category
+                </a>
+            </div>
             <div class="table-responsive">
-                <div class="col-md-6 text-right">
-                    <a href="{{ url('admin/category-management/add-sub-category') }}">
-                        Add New Sub Category
-                    </a>
-                </div>
+
                 <table border="0" class="table">
                     <tbody>
                         @forelse ($bsubcategories as $cat)
@@ -132,56 +135,19 @@
                             </td>
                         </tr>
                         @endforelse
-                        <!--
-                            <tr>
-                            <td class="text-left ">
-                                <span class="restaurant">Restaurant</span>
-                                <br>
-                                Restaurant Type 1
-                            </td>
-                            <td class="text-right">
-                                <span class="edit-icon">
-                                    <a href="#">
-                                        <img src="{{ asset('public/adminAssets/images/edit.png')}}" alt="edit" width="15px">
-                                    </a>
-                                </span>
-                                <span class="delete-icon">
-                                    <a href="#">
-                                        <img src="{{ asset('public/adminAssets/images/delete.png')}}" alt="delete" width="15px">
-                                    </a>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-left ">
-                                <span class="restaurant">Restaurant</span>
-                                <br>
-                                Restaurant Type 1
-                            </td>
-                            <td class="text-right">
-                                <span class="edit-icon">
-                                    <a href="#">
-                                        <img src="{{ asset('public/adminAssets/images/edit.png')}}" alt="edit" width="15px">
-                                    </a>
-                                </span>
-                                <span class="delete-icon">
-                                    <a href="#">
-                                        <img src="{{ asset('public/adminAssets/images/delete.png')}}" alt="delete" width="15px">
-                                    </a>
-                                </span>
-                            </td>
-                        </tr> -->
+
                     </tbody>
                 </table>
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="messages">
+            <div class="col-md-12 text-right">
+                <a class="add_new_button" href="{{ url('admin/category-management/user-category') }}">
+                    Add New User Category
+                </a>
+            </div>
             <div class="table-responsive">
-                <div class="col-md-6 text-right">
-                    <a href="{{ url('admin/category-management/user-category') }}">
-                        Add New User Category
-                    </a>
-                </div>
+
                 @php
                 $business_categories = DB::table('categories')->where('c_type','=','2')->get();
                 @endphp

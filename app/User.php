@@ -9,10 +9,11 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use App\Models\UserRoleRelation;
 use Auth;
 use App\Models\Role;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use  Notifiable, EntrustUserTrait;
+    use  HasApiTokens, Notifiable, EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.

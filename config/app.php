@@ -178,6 +178,8 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*

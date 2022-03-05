@@ -40,7 +40,7 @@ $awardsData = DB::table('awards')->first();
             <input type="hidden" name="id" value="<?php echo $awardsData->id ?>">
             <div class="col-md-6 col-sm-6">
                 <div class="form-group">
-                    <label>Regular Visitor</label>
+                    <label>Regular Visitor</label> 
                     <select class="form-control givepoint-img" name="regular_visitor">
                         <option value="10 Days" {{$awardsData->regular_visitor == '10 Days'  ? 'selected' : ''}}>10 Days</option>
                         <option value="15 Days" {{$awardsData->regular_visitor == '15 Days'  ? 'selected' : ''}}>15 Days</option>

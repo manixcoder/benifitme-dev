@@ -19,6 +19,12 @@
       </a>
     </li>
     <li>
+      <a href="{{ url('admin/services-category-management') }}">
+        <img src="{{ asset('public/adminAssets/images/sp_companies.png')}}" alt="Companies">
+        Service & Product Category
+      </a>
+    </li>
+    <li>
       <a href="{{ url('admin/advertising-management') }}">
         <img src="{{ asset('public/adminAssets/images/sp_advertising.png')}}" alt="Advertising">
         Advertising

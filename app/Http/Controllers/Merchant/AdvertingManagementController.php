@@ -97,9 +97,9 @@ class AdvertingManagementController extends Controller
      */
     public function edit(MerchentAdvertings $adverting, $id)
     {
-       // dd($id);
+        // dd($id);
         $data = array();
-        $data['addsData']=MerchentAdvertings::find($id);
+        $data['addsData'] = MerchentAdvertings::find($id);
         return view('merchent.adverting.edit', $data);
     }
 

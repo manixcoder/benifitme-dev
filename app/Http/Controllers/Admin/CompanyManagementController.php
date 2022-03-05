@@ -137,6 +137,7 @@ class CompanyManagementController extends Controller
                 'is_active'                 => '1',
                 'is_audience'               => '1',
                 'is_confirmation_chk'       => '1',
+                'subscription_id'           => '1',
                 'profile_image'             => $profile_image,
                 'last_login'                => date("Y-m-d H:i:s"),
             ]);

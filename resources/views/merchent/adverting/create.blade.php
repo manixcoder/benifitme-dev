@@ -62,13 +62,13 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <label>Product</label>
+                        <label>Product and Services</label>
                         @php
-                        $productData = DB::table('products')->where('merchent_id', Auth::user()->id)->where('product_type','1')->get();
+                        $productData = DB::table('products')->where('merchent_id', Auth::user()->id)->get();
                         @endphp
                         <div class="form-group">
                             <select class="form-control @error('ad_product') has-danger @enderror givepoint-img" name="ad_product">
-                                <option value="">Select Product</option>
+                                <option value="">Select Product or Service</option>
                                 @foreach($productData as $product)
                                 <option value="{{ $product->id }}">{{ $product->product_name }}</option>
                                 @endforeach
